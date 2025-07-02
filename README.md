@@ -1,4 +1,4 @@
-# 🎮 PlayerMatch
+# PlayerMatch
 
 **PlayerMatch** é uma aplicação web interativa construída em **Angular**, que recomenda jogos personalizados para o usuário com base no seu momento e preferências.  
 A aplicação consome a **RAWG API** para exibir jogos em alta, mostrando imagem, nome e avaliação de cada título.
