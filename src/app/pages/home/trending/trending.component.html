@@ -1,0 +1,36 @@
+<section class=" container trending-section">
+    <div class="section-header">
+        <h2>Jogos Mais Jogados</h2>
+    </div>
+
+    @if (isLoading) {
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+    }
+    @else if (mostPlayedGames.length === 0) {
+    <div class="no-games">
+        Nenhum jogo encontrado. Tente novamente mais tarde.
+    </div>
+    }
+    @else {
+    <div class="games-grid">
+        @for (game of mostPlayedGames; track game.id) {
+        <a [routerLink]="['/game', game.slug]" class="game-card">
+            <div class="game-image-container">
+                <img [src]="game.background_image" [alt]="game.name" loading="lazy">
+                <div class="rating-badge {{ getRatingColor(game.rating) }}">
+                    {{ game.rating | number:'1.1-1' }}
+                </div>
+            </div>
+
+            <h3>{{ game.name }}</h3>
+            <div class="game-stats">
+                <div>🎮 {{ getPlatforms(game) }}</div>
+                <div>👥 {{ game.added || 0 }} jogadores</div>
+            </div>
+        </a>
+        }
+    </div>
+    }
+</section>
