@@ -23,6 +23,19 @@ export class GamesService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  getRandomGames(): Observable<any> {
+    const params = {
+      ordering: '',
+      page_size: '18',
+      key: this.apiKey,
+      page: Math.floor(Math.random() * 500) + 1,
+    };
+
+    return this.http
+      .get<any>(this.apiUrl, { params })
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Ocorreu um erro!';
     if (error.error instanceof ErrorEvent) {

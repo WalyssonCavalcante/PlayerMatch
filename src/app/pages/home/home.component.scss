@@ -72,12 +72,6 @@ main {
   left: 40px;
   max-width: 500px;
 
-  img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
   @media (max-width: 1024px) {
     top: 0;
     left: 0;

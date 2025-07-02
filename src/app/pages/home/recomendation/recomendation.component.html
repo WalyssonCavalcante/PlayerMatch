@@ -1,21 +1,31 @@
-<section class=" container trending-section">
+<section class="container recommendations-section">
     <div class="section-header">
-        <h2>Jogos em Tendencia</h2>
+        <h2>Recomendações para Você</h2>
     </div>
 
     @if (isLoading) {
-    <div class="loading">
+    <div class="loading-container">
         <div class="loading-spinner"></div>
+        <p>Carregando recomendações...</p>
     </div>
     }
-    @else if (mostPlayedGames.length === 0) {
+
+    @if (errorMessage) {
+    <div class="error-container">
+        <p>{{ errorMessage }}</p>
+        <button (click)="loadRecommendedGames()">Tentar novamente</button>
+    </div>
+    }
+
+    @if (!isLoading && !errorMessage && recommendedGames.length === 0) {
     <div class="no-games">
-        Nenhum jogo encontrado. Tente novamente mais tarde.
+        Nenhuma recomendação encontrada.
     </div>
     }
-    @else {
-    <div class="games-grid">
-        @for (game of mostPlayedGames; track game.id) {
+
+    @if (!isLoading && !errorMessage && recommendedGames.length > 0) {
+    <div class="recommended-grid">
+        @for (game of recommendedGames; track game.id) {
         <a [routerLink]="['/game', game.slug]" class="game-card">
             <div class="game-image-container">
                 <img [src]="game.background_image" [alt]="game.name" loading="lazy">
@@ -27,7 +37,7 @@
             <h3>{{ game.name }}</h3>
             <div class="game-stats">
                 <div>🎮 {{ getPlatforms(game) }}</div>
-                <div>👥 {{ game.added || 0 }} jogadores</div>
+                <div>⭐ {{ game.released | date:'yyyy' }}</div>
             </div>
         </a>
         }
