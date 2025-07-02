@@ -1,27 +1,57 @@
-# PlayerMatch
+# 🎮 PlayerMatch
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.20.
+**PlayerMatch** é uma aplicação web interativa construída em **Angular**, que recomenda jogos personalizados para o usuário com base no seu momento e preferências.  
+A aplicação consome a **RAWG API** para exibir jogos em alta, mostrando imagem, nome e avaliação de cada título.
+Pretendo incluir integraçao com IA para recomendar jogos de acordo com as respostas do usuario.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 📸 Preview
 
-## Code scaffolding
+![PlayerMatch Screenshot](Screenshot.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🚀 Funcionalidades
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- ✅ Tela de boas-vindas responsiva
+- ✅ Recomendação de jogos em tendência via RAWG API
+- ✅ Cards com imagem, nome e nota de avaliação
+- ✅ Componentes standalone e estrutura moderna sem AppModule
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🛠️ Tecnologias Utilizadas
 
-## Running end-to-end tests
+- **Angular 18**
+- **TypeScript**
+- **SCSS**
+- **RAWG API**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 📦 Como Executar o Projeto
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Clone o repositório:
+
+```bash
+git clone https://github.com/WalyssonCavalcante/PlayerMatch.git
+```
+
+Acesse a pasta do projeto:
+
+```bash
+cd PlayerMatch
+```
+
+Instale as dependencias:
+
+```bash
+npm install
+```
+
+inicie o servidor de desenvolvimento e entao acesse o localhost fornecido:
+
+```bash
+ng serve
+```
