@@ -6,7 +6,7 @@ import { Observable, catchError, retry, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class GamesService {
-  private apiKey = 'API DO RAWG AQUI';
+  private apiKey = 'ffe71b0551694ccc827653eeae25eca2';
   private apiUrl = 'https://api.rawg.io/api/games';
 
   constructor(private http: HttpClient) {}
