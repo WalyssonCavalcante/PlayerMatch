@@ -1,7 +1,16 @@
+.quiz-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 16px;
+  width: 100%;
+}
 .quiz-ai {
-  max-width: 600px;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 32px;
+  padding: 48px;
   background: #1a1a1a;
   border-radius: 12px;
   color: #fff;

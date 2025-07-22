@@ -1,29 +1,33 @@
-<section class="quiz-ai">
-    <h2>Descubra seu jogo ideal</h2>
+<main class="quiz-wrapper">
 
-    <form (ngSubmit)="submitQuiz()">
-        <label>
-            Como você está se sentindo hoje?
-            <input [(ngModel)]="quizAnswers[0]" name="q1" required />
-        </label>
+    <section class="quiz-ai">
+        <h2>Descubra seu jogo ideal</h2>
 
-        <label>
-            Prefere um jogo rápido ou longo?
-            <input [(ngModel)]="quizAnswers[1]" name="q2" required />
-        </label>
+        <form (ngSubmit)="submitQuiz()">
+            <label>
+                Como você está se sentindo hoje?
+                <input [(ngModel)]="quizAnswers[0]" name="q1" required />
+            </label>
 
-        <label>
-            Gosta de jogar sozinho ou em grupo?
-            <input [(ngModel)]="quizAnswers[2]" name="q3" required />
-        </label>
+            <label>
+                Prefere um jogo rápido ou longo?
+                <input [(ngModel)]="quizAnswers[1]" name="q2" required />
+            </label>
 
-        <button type="submit" [disabled]="loading">Ver recomendação</button>
-    </form>
+            <label>
+                Gosta de jogar sozinho ou em grupo?
+                <input [(ngModel)]="quizAnswers[2]" name="q3" required />
+            </label>
 
-    <div *ngIf="loading">🎮 Gerando recomendação...</div>
+            <button type="submit" [disabled]="loading">Ver recomendação</button>
+        </form>
 
-    <div class="recommendation" *ngIf="recommendation">
-        <h3>Sugestão da IA:</h3>
-        <p>{{ recommendation }}</p>
-    </div>
-</section>
+        <div *ngIf="loading">🎮 Gerando recomendação...</div>
+
+        <div class="recommendation" *ngIf="recommendation">
+            <h3>Sugestão da IA:</h3>
+            <p>{{ recommendation }}</p>
+        </div>
+    </section>
+
+</main>
