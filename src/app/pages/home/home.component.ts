@@ -3,6 +3,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { TrendingComponent } from './trending/trending.component';
 import { AboutComponent } from './about/about.component';
 import { RecomendationComponent } from './recomendation/recomendation.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,4 +17,10 @@ import { RecomendationComponent } from './recomendation/recomendation.component'
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor(private router: Router) {}
+
+  irParaQuiz() {
+    this.router.navigate(['/quiz']);
+  }
+}

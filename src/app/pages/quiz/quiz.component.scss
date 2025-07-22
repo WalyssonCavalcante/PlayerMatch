@@ -1,0 +1,52 @@
+.quiz-ai {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  color: #fff;
+
+  h2 {
+    color: #fa9021;
+    margin-bottom: 24px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 16px;
+    font-size: 1rem;
+
+    input {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      color: #1a1a1a;
+    }
+  }
+
+  button {
+    padding: 12px 24px;
+    background: #fa9021;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover {
+      background: #e67c1c;
+    }
+  }
+
+  p {
+    margin-top: 24px;
+    font-size: 1.125rem;
+  }
+  .recommendation {
+    margin-top: 20px;
+  }
+}
