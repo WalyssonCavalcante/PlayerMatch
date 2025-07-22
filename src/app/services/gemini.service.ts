@@ -9,9 +9,7 @@ import {
   providedIn: 'root',
 })
 export class GeminiService {
-  private genAI = new GoogleGenerativeAI(
-    'AIzaSyDp9rpdVkt3vU56KlPHOjUbWNE3XY7bAtw'
-  );
+  private genAI = new GoogleGenerativeAI('API DO GOOGLE AQUI');
 
   async getGameRecommendation(quizAnswers: string[]): Promise<string> {
     const model = this.genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
