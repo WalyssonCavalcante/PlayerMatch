@@ -5,12 +5,12 @@
 
         <form (ngSubmit)="submitQuiz()">
             <label>
-                Como você está se sentindo hoje?
+                Qual tipo de jogo voce está procurando?
                 <input [(ngModel)]="quizAnswers[0]" name="q1" required />
             </label>
 
             <label>
-                Prefere um jogo rápido ou longo?
+                Qual duração do jogo está bom para você?
                 <input [(ngModel)]="quizAnswers[1]" name="q2" required />
             </label>
 
@@ -22,7 +22,7 @@
             <button type="submit" [disabled]="loading">Ver recomendação</button>
         </form>
 
-        <div *ngIf="loading">🎮 Gerando recomendação...</div>
+        <div class="loading" *ngIf="loading">🎮 Gerando recomendação...</div>
 
         <div class="recommendation" *ngIf="recommendation">
             <h3>Sugestão da IA:</h3>
