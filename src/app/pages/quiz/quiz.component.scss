@@ -58,4 +58,25 @@
   .recommendation {
     margin-top: 20px;
   }
+  .game-info {
+    margin-top: 24px;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    h4 {
+      margin-bottom: 8px;
+      font-size: 1.25rem;
+      color: #fa9021;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #ccc;
+    }
+  }
 }

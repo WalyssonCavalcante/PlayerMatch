@@ -27,6 +27,14 @@
         <div class="recommendation" *ngIf="recommendation">
             <h3>Sugestão da IA:</h3>
             <p>{{ recommendation }}</p>
+
+            <div *ngIf="gameData" class="game-info">
+                <img [src]="gameData.background_image" alt="{{ gameData.name }}" />
+                <h4>{{ gameData.name }}</h4>
+                <p>
+                    Plataformas: {{platformList}}
+                </p>
+            </div>
         </div>
     </section>
 

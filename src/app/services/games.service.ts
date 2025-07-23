@@ -11,6 +11,13 @@ export class GamesService {
 
   constructor(private http: HttpClient) {}
 
+  searchGameByName(name: string): Observable<any> {
+    const url = `https://api.rawg.io/api/games?search=${encodeURIComponent(
+      name
+    )}&key=${this.apiKey}`;
+    return this.http.get<any>(url);
+  }
+
   getMostPlayedGames(): Observable<any> {
     const params = {
       ordering: '-popularity',

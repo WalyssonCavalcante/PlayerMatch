@@ -16,12 +16,16 @@ export class GeminiService {
   async getGameRecommendation(quizAnswers: string[]): Promise<string> {
     const model = this.genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
-    const prompt = `Sou um assistente que recomenda jogos. Com base nas respostas do quiz abaixo, sugira um jogo perfeito, com gênero e uma breve explicação:
+    const prompt = `Sou um assistente que recomenda jogos. Com base nas respostas do quiz abaixo, sugira apenas 1 jogo ideal no seguinte formato:
 
-Respostas do quiz:
-${quizAnswers.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
+    Nome: [nome do jogo]
+    Gênero: [gênero do jogo]
+    Descrição: [uma breve explicação de por que ele combina com o humor atual]
 
-Responda apenas com o nome do jogo, gênero e uma explicação curta.`;
+    Respostas do quiz:
+    ${quizAnswers.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
+
+    Não adicione nada além desse formato.`;
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
