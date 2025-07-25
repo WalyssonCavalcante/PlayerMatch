@@ -10,7 +10,7 @@ import {
 })
 export class GeminiService {
   private genAI = new GoogleGenerativeAI(
-    'AIzaSyDp9rpdVkt3vU56KlPHOjUbWNE3XY7bAtw'
+    'API-KEY'
   );
 
   async getGameRecommendation(quizAnswers: string[]): Promise<string> {
