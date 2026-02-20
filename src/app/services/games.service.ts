@@ -6,46 +6,31 @@ import { Observable, catchError, retry, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class GamesService {
-  private apiKey = 'API';
-  private apiUrl = 'https://api.rawg.io/api/games';
-
   constructor(private http: HttpClient) {}
 
   searchGameByName(name: string): Observable<any> {
-    const url = `https://api.rawg.io/api/games?search=${encodeURIComponent(
-      name
-    )}&key=${this.apiKey}`;
+    const url = `/api/rawg?type=search&name=${encodeURIComponent(name)}`;
     return this.http.get<any>(url);
   }
 
   getMostPlayedGames(): Observable<any> {
-    const params = {
-      ordering: '-popularity',
-      page_size: '5',
-      key: this.apiKey,
-    };
-
     return this.http
-      .get<any>(this.apiUrl, { params })
+      .get<any>('/api/rawg?type=most-played')
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getRandomGames(): Observable<any> {
-    const params = {
-      ordering: '',
-      page_size: '18',
-      key: this.apiKey,
-      page: Math.floor(Math.random() * 500) + 1,
-    };
-
     return this.http
-      .get<any>(this.apiUrl, { params })
+      .get<any>('/api/rawg?type=random')
       .pipe(retry(2), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Ocorreu um erro!';
-    if (error.error instanceof ErrorEvent) {
+    const hasBrowserErrorEvent =
+      typeof ErrorEvent !== 'undefined' && error.error instanceof ErrorEvent;
+
+    if (hasBrowserErrorEvent) {
       errorMessage = `Erro: ${error.error.message}`;
     } else {
       errorMessage = `Código do erro: ${error.status}\nMensagem: ${error.message}`;

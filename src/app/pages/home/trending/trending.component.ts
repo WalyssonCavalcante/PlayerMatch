@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GamesService } from '../../../services/games.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-trending',
@@ -13,10 +14,21 @@ import { GamesService } from '../../../services/games.service';
 export class TrendingComponent implements OnInit {
   mostPlayedGames: any[] = [];
   isLoading = true;
+  private readonly isBrowser: boolean;
 
-  constructor(private gamesService: GamesService) {}
+  constructor(
+    private gamesService: GamesService,
+    @Inject(PLATFORM_ID) platformId: object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
+    if (!this.isBrowser) {
+      this.isLoading = false;
+      return;
+    }
+
     this.gamesService.getMostPlayedGames().subscribe({
       next: (data) => {
         this.mostPlayedGames = data.results || [];
