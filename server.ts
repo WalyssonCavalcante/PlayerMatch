@@ -81,8 +81,12 @@ export function app(): express.Express {
 
     try {
       const genAI = new GoogleGenerativeAI(apiKey);
-      const modelName = process.env['GEMINI_MODEL'] || 'gemini-1.5-flash';
-      const model = genAI.getGenerativeModel({ model: modelName });
+      const preferredModel = process.env['GEMINI_MODEL'];
+      const modelCandidates = [
+        preferredModel,
+        'gemini-2.0-flash',
+        'gemini-2.5-flash',
+      ].filter(Boolean) as string[];
 
       const prompt = `Sou um assistente que recomenda jogos. Com base nas respostas do quiz abaixo, sugira apenas 1 jogo ideal no seguinte formato:
 
@@ -95,9 +99,21 @@ ${quizAnswers.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
 
 Não adicione nada além desse formato.`;
 
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      res.status(200).json({ recommendation: response.text(), model: modelName });
+      let lastError: unknown = null;
+
+      for (const modelName of modelCandidates) {
+        try {
+          const model = genAI.getGenerativeModel({ model: modelName });
+          const result = await model.generateContent(prompt);
+          const response = await result.response;
+          res.status(200).json({ recommendation: response.text(), model: modelName });
+          return;
+        } catch (error) {
+          lastError = error;
+        }
+      }
+
+      throw lastError || new Error('No Gemini model succeeded');
     } catch (error) {
       console.error('Gemini API error:', error);
       const status = Number((error as any)?.status || (error as any)?.statusCode || 500);
