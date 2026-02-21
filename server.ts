@@ -81,7 +81,8 @@ export function app(): express.Express {
 
     try {
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+      const modelName = process.env['GEMINI_MODEL'] || 'gemini-1.5-flash';
+      const model = genAI.getGenerativeModel({ model: modelName });
 
       const prompt = `Sou um assistente que recomenda jogos. Com base nas respostas do quiz abaixo, sugira apenas 1 jogo ideal no seguinte formato:
 
@@ -96,10 +97,18 @@ Não adicione nada além desse formato.`;
 
       const result = await model.generateContent(prompt);
       const response = await result.response;
-      res.status(200).json({ recommendation: response.text() });
+      res.status(200).json({ recommendation: response.text(), model: modelName });
     } catch (error) {
       console.error('Gemini API error:', error);
-      res.status(500).json({ error: 'Failed to generate recommendation' });
+      const status = Number((error as any)?.status || (error as any)?.statusCode || 500);
+      const message =
+        (error as any)?.message ||
+        (error as any)?.errorDetails?.[0]?.reason ||
+        'Failed to generate recommendation';
+      res.status(status >= 400 && status < 600 ? status : 500).json({
+        error: 'Gemini request failed',
+        details: message,
+      });
     }
   });
 
